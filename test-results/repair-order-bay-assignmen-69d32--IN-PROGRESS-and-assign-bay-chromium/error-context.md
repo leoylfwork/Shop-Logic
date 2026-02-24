@@ -1,0 +1,91 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - heading "CK-Flow 2.0" [level=1] [ref=e9]
+      - generic [ref=e10]:
+        - combobox [ref=e11] [cursor=pointer]:
+          - option "Mechanic Shop" [selected]
+          - option "Body Shop"
+        - generic:
+          - img
+    - navigation [ref=e12]:
+      - button "Workflow" [ref=e13] [cursor=pointer]:
+        - img [ref=e14]
+        - generic [ref=e19]: Workflow
+      - button "Calendar" [ref=e20] [cursor=pointer]:
+        - img [ref=e21]
+        - generic [ref=e23]: Calendar
+      - button "History" [ref=e24] [cursor=pointer]:
+        - img [ref=e25]
+        - generic [ref=e29]: History
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - img [ref=e32]
+        - textbox "SEARCH VIN/MODEL..." [ref=e35]
+      - generic [ref=e36]:
+        - button "Advisor Mode" [ref=e37] [cursor=pointer]
+        - button "Foreman Mode" [ref=e38] [cursor=pointer]
+      - generic [ref=e39]:
+        - generic "e2e_owner@test.com" [ref=e40]:
+          - img [ref=e41]
+          - generic [ref=e44]: e2e_owner@test.com
+        - button "Sign out" [ref=e45] [cursor=pointer]:
+          - img [ref=e46]
+  - main [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - img [ref=e55]
+            - heading "Done" [level=2] [ref=e62]
+            - generic [ref=e64]: 0 UNITS
+            - button [ref=e65] [cursor=pointer]:
+              - img [ref=e66]
+          - paragraph [ref=e70]: No units in this status
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - img [ref=e74]
+            - heading "To-do" [level=2] [ref=e81]
+            - generic [ref=e83]: 1 UNITS
+            - button [ref=e84] [cursor=pointer]:
+              - img [ref=e85]
+          - generic [ref=e90] [cursor=pointer]:
+            - heading "2018 BMW M3" [level=4] [ref=e94]
+            - generic [ref=e95]:
+              - paragraph [ref=e98]: Turbo underboost error P0299
+              - paragraph [ref=e101]: Check wastegate actuator
+            - generic [ref=e103]: URGENT
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - img [ref=e114]
+            - heading "Pending" [level=2] [ref=e121]
+            - generic [ref=e123]: 0 UNITS
+            - button [ref=e124] [cursor=pointer]:
+              - img [ref=e125]
+          - paragraph [ref=e129]: No units in this status
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - img [ref=e133]
+            - heading "In Progress" [level=2] [ref=e140]
+            - generic [ref=e142]: 0 UNITS
+            - button [ref=e143] [cursor=pointer]:
+              - img [ref=e144]
+          - paragraph [ref=e148]: No units in this status
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - img [ref=e152]
+            - heading "Body Work" [level=2] [ref=e159]
+            - generic [ref=e161]: 0 UNITS
+            - button [ref=e162] [cursor=pointer]:
+              - img [ref=e163]
+          - paragraph [ref=e167]: No units in this status
+      - button "NEW ORDER" [ref=e168] [cursor=pointer]:
+        - img [ref=e169]
+        - generic [ref=e170]: NEW ORDER
+      - button "Send Broadcast to Foreman" [ref=e171] [cursor=pointer]:
+        - img [ref=e172]
+```

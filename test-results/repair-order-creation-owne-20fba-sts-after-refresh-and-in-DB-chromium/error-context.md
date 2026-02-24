@@ -1,0 +1,126 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - heading "CK-Flow 2.0" [level=1] [ref=e9]
+      - generic [ref=e10]:
+        - combobox [ref=e11] [cursor=pointer]:
+          - option "Mechanic Shop" [selected]
+          - option "Body Shop"
+        - generic:
+          - img
+    - navigation [ref=e12]:
+      - button "Workflow" [ref=e13] [cursor=pointer]:
+        - img [ref=e14]
+        - generic [ref=e19]: Workflow
+      - button "Calendar" [ref=e20] [cursor=pointer]:
+        - img [ref=e21]
+        - generic [ref=e23]: Calendar
+      - button "History" [ref=e24] [cursor=pointer]:
+        - img [ref=e25]
+        - generic [ref=e29]: History
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - img [ref=e32]
+        - textbox "SEARCH VIN/MODEL..." [ref=e35]: 555-E2E
+      - generic [ref=e36]:
+        - button "Advisor Mode" [ref=e37] [cursor=pointer]
+        - button "Foreman Mode" [ref=e38] [cursor=pointer]
+      - generic [ref=e39]:
+        - generic "e2e_owner@test.com" [ref=e40]:
+          - img [ref=e41]
+          - generic [ref=e44]: e2e_owner@test.com
+        - button "Sign out" [ref=e45] [cursor=pointer]:
+          - img [ref=e46]
+  - main [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - img [ref=e55]
+            - heading "Done" [level=2] [ref=e62]
+            - generic [ref=e64]: 0 UNITS
+            - button [ref=e65] [cursor=pointer]:
+              - img [ref=e66]
+          - paragraph [ref=e70]: No units in this status
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - img [ref=e74]
+            - heading "To-do" [level=2] [ref=e81]
+            - generic [ref=e83]: 0 UNITS
+            - button [ref=e84] [cursor=pointer]:
+              - img [ref=e85]
+          - paragraph [ref=e89]: No units in this status
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - img [ref=e93]
+            - heading "Pending" [level=2] [ref=e100]
+            - generic [ref=e102]: 0 UNITS
+            - button [ref=e103] [cursor=pointer]:
+              - img [ref=e104]
+          - paragraph [ref=e108]: No units in this status
+        - generic [ref=e109]:
+          - generic [ref=e110]:
+            - img [ref=e112]
+            - heading "In Progress" [level=2] [ref=e119]
+            - generic [ref=e121]: 0 UNITS
+            - button [ref=e122] [cursor=pointer]:
+              - img [ref=e123]
+          - paragraph [ref=e127]: No units in this status
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - img [ref=e131]
+            - heading "Body Work" [level=2] [ref=e138]
+            - generic [ref=e140]: 0 UNITS
+            - button [ref=e141] [cursor=pointer]:
+              - img [ref=e142]
+          - paragraph [ref=e146]: No units in this status
+      - button "NEW ORDER" [ref=e147] [cursor=pointer]:
+        - img [ref=e148]
+        - generic [ref=e149]: NEW ORDER
+      - button "Send Broadcast to Foreman" [ref=e150] [cursor=pointer]:
+        - img [ref=e151]
+  - generic [ref=e156]:
+    - generic [ref=e157]:
+      - heading "NEW ORDER" [level=3] [ref=e158]
+      - generic [ref=e159]:
+        - button "INSURANCE" [ref=e160] [cursor=pointer]:
+          - img [ref=e161]
+          - text: INSURANCE
+        - button "URGENT" [ref=e163] [cursor=pointer]
+    - generic [ref=e164]:
+      - button "Mechanic Order" [ref=e165] [cursor=pointer]:
+        - img [ref=e166]
+        - text: Mechanic Order
+      - button "Body Order" [ref=e168] [cursor=pointer]:
+        - img [ref=e169]
+        - text: Body Order
+    - generic [ref=e173]:
+      - generic [ref=e174]:
+        - text: MODEL
+        - textbox [ref=e175]
+      - generic [ref=e176]:
+        - generic [ref=e177]:
+          - text: CLIENT
+          - textbox [ref=e178]
+        - generic [ref=e179]:
+          - text: PHONE
+          - textbox [ref=e180]
+      - generic [ref=e182]:
+        - paragraph [ref=e185]: INFO
+        - generic [ref=e186]:
+          - textbox "ADD NEW INFO POINT..." [ref=e187]
+          - button [ref=e188] [cursor=pointer]:
+            - img [ref=e189]
+      - generic [ref=e190]:
+        - text: ATTACHMENTS
+        - generic [ref=e191] [cursor=pointer]:
+          - img [ref=e193]
+          - paragraph [ref=e197]: Upload documents or images
+    - generic [ref=e198]:
+      - button "CANCEL" [ref=e199] [cursor=pointer]
+      - button "INITIATE MECHANIC RO" [active] [ref=e200] [cursor=pointer]
+```

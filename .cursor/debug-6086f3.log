@@ -1,0 +1,4 @@
+{"sessionId":"6086f3","location":"App.tsx:onSubmit","message":"submit","data":{"model":"TEST123","hasSupabase":true,"userRole":"ADVISOR"},"timestamp":1771708427375,"hypothesisId":"step1"}
+{"sessionId":"6086f3","location":"supabase.ts:createRepairOrder","message":"createRepairOrder","data":{"roId":"RO-4946","status":"TODO"},"timestamp":1771708427376,"hypothesisId":"step2"}
+{"sessionId":"6086f3","location":"supabase.ts:after insert","message":"supabase insert result","data":{"error":"new row for relation \"repair_orders\" violates check constraint \"repair_orders_status_check\""},"timestamp":1771708428514,"hypothesisId":"step3"}
+{"sessionId":"6086f3","location":"App.tsx:catch","message":"createRepairOrder error","data":{"err":"new row for relation \"repair_orders\" violates check constraint \"repair_orders_status_check\""},"timestamp":1771708428514,"hypothesisId":"step4"}

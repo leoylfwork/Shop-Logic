@@ -1,0 +1,130 @@
+{"sessionId":"d51fb5","location":"App.tsx:ros initial state","message":"ros from localStorage","data":{"fromStorage":true,"count":15},"timestamp":1771731606654,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:ros initial state","message":"ros from localStorage","data":{"fromStorage":true,"count":15},"timestamp":1771731606655,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731606675,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731606675,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:ros initial state","message":"ros from localStorage","data":{"fromStorage":true,"count":1},"timestamp":1771731637794,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:ros initial state","message":"ros from localStorage","data":{"fromStorage":true,"count":1},"timestamp":1771731637796,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731638160,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731638161,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731672126,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731672186,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731672374,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731672652,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731672716,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731672851,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731672902,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731672942,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731673253,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731673471,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731673610,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731673813,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:ros initial state","message":"ros from localStorage","data":{"fromStorage":true,"count":16},"timestamp":1771731687844,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731687847,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731687847,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:ros initial state","message":"ros from localStorage","data":{"fromStorage":true,"count":16},"timestamp":1771731687845,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731752863,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731752934,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731753114,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731753298,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731753354,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731753540,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731753542,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731753550,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731753612,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731753621,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731753884,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731753885,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731754471,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731754537,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731754721,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731782309,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731782378,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731782659,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731782730,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731782787,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731782954,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731783110,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731783117,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731783234,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731783234,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731783401,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731783407,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731783470,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731783526,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731783768,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731809484,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731809497,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731813791,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:realtime effect","message":"App mount/session","data":{"hasSupabase":true,"hasSession":true,"loading":false},"timestamp":1771731813787,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731862470,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731862529,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731862697,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731869470,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731869529,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731869770,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731874470,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731874528,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731874711,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771731877469,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771731877601,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771731877766,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733394477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733394545,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733394756,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733396477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733396543,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733396743,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733399477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733399578,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733399778,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733400477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733400694,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733400979,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733408497,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733408571,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733408761,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733413478,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733413550,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733413805,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733424478,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733424544,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733424807,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733481477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733481546,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733481746,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733483477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733483542,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733483738,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733487477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733487546,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733487800,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733489477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733489540,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733489876,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733500477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733500537,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733500768,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733507476,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733507582,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733507762,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733516477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733516551,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733516741,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733519477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733519537,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733519786,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733526477,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733526540,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733526728,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733570476,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":16,"hasError":false},"timestamp":1771733570564,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":16},"timestamp":1771733570828,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733710481,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":17,"hasError":false},"timestamp":1771733710554,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":17},"timestamp":1771733710749,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771733715482,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":17,"hasError":false},"timestamp":1771733715540,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":17},"timestamp":1771733715794,"hypothesisId":"H1"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders","message":"getRepairOrders called","data":{"hasSupabase":true},"timestamp":1771735320486,"hypothesisId":"H1-H4"}
+{"sessionId":"d51fb5","location":"supabase.ts:getRepairOrders:after select","message":"repair_orders select result","data":{"rowCount":17,"hasError":false},"timestamp":1771735320604,"hypothesisId":"H2-H4"}
+{"sessionId":"d51fb5","location":"App.tsx:refetchRosAndBays","message":"refetch completed","data":{"freshRosCount":17},"timestamp":1771735320898,"hypothesisId":"H1"}

@@ -1,0 +1,8 @@
+{
+  "name": "CK-Flow 2.0",
+  "description": "A vertical-first automotive shop management system focused on vehicle-centric workflows, financial closure, and AI-powered diagnostics.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
