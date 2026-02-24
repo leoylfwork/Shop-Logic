@@ -17,7 +17,7 @@ function AuthGate() {
     );
   }
 
-  if (!auth.session) return <LoginPage />;
+  if (!auth.session || auth.signingOut) return <LoginPage />;
 
   return <App />;
 }

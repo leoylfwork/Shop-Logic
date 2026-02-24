@@ -6,9 +6,10 @@ type AuthContextValue = {
   session: Session | null;
   user: User | null;
   loading: boolean;
+  signingOut: boolean;
   supabaseConfigured: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
-  signOut: () => Promise<void>;
+  signOut: () => void;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -20,6 +21,7 @@ export function useAuth(): AuthContextValue | null {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
     if (!supabase) {
@@ -28,6 +30,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, nextSession) => {
       setSession(nextSession);
+      if (!nextSession) setSigningOut(false);
     });
     supabase.auth.getSession().then(({ data: { session: s } }) => {
       setSession(s);
@@ -42,14 +45,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return { error };
   };
 
-  const signOut = async () => {
-    if (supabase) await supabase.auth.signOut();
+  const signOut = () => {
+    setSigningOut(true);
+    if (supabase) {
+      supabase.auth.signOut().finally(() => setSigningOut(false));
+    } else {
+      setSigningOut(false);
+    }
   };
 
   const value: AuthContextValue = {
     session,
     user: session?.user ?? null,
     loading,
+    signingOut,
     supabaseConfigured: !!supabase,
     signIn,
     signOut,

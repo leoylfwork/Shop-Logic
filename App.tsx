@@ -156,7 +156,7 @@ function assignCardsToSlots(sectionItems: RepairOrder[], gridCount: number): (Re
 
 export default function App() {
   const auth = useAuth();
-  const currentUserRole = useCurrentUserRole();
+  const { role: currentUserRole, loading: roleLoading } = useCurrentUserRole();
   const [workType, setWorkType] = useState<WorkType>(() => {
     const saved = localStorage.getItem('ck_flow_work_type');
     return (saved as WorkType) || 'MECHANIC';
@@ -325,8 +325,10 @@ export default function App() {
 
   const refetchRosAndBays = async () => {
     if (!supabase) return;
-    const freshRos = await getRepairOrders([]);
-    const freshBays = await getBays(INITIAL_BAYS);
+    const [freshRos, freshBays] = await Promise.all([
+      getRepairOrders([]),
+      getBays(INITIAL_BAYS),
+    ]);
     setRos(freshRos);
     setBays(freshBays.map(b => ({ ...b, currentROId: freshRos.find(r => r.bayId === b.id)?.id })));
   };
@@ -352,6 +354,14 @@ export default function App() {
       }
     }
   }, [ros, bays, calendarEvents, advisorOrder, foremanOrder, ownerOrder, bodyShopOrder, collapsedSections, userRole, workType]);
+
+  /** Initial load: sync ROS and bays from DB so new browser / cleared cache shows correct data. */
+  const initialRefetchDoneRef = useRef(false);
+  useEffect(() => {
+    if (!supabase || initialRefetchDoneRef.current) return;
+    initialRefetchDoneRef.current = true;
+    refetchRosAndBays();
+  }, [supabase]);
 
   /** Supabase Realtime: subscribe to repair_orders so other clients' changes are reflected. */
   const refetchRosAndBaysRef = useRef(refetchRosAndBays);
@@ -1091,7 +1101,11 @@ export default function App() {
           </aside>
         )}
 
-        {isMechanicModeUnauthorized ? (
+        {roleLoading ? (
+          <div className="flex-1 flex items-center justify-center p-8">
+            <p className="text-sm text-slate-500 font-semibold">Loading…</p>
+          </div>
+        ) : isMechanicModeUnauthorized ? (
           <div className="flex-1 flex items-center justify-center p-8">
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm text-center max-w-lg">
               <h2 className="text-lg font-black uppercase tracking-wider text-slate-900 mb-2">Unauthorized</h2>
@@ -1342,7 +1356,10 @@ export default function App() {
 
       {showNewRODialog && ( <NewRODialog onClose={() => setShowNewRODialog(false)} onSubmit={(data) => {
             if (createROInFlightRef.current) return;
-            createROInFlightRef.current = true;
+            if (supabase && !canCreateOrder(userRole)) {
+              console.warn('[capabilities] createRepairOrder: not allowed for role', userRole);
+              return;
+            }
             const newROId = `RO-${Math.floor(1000 + Math.random() * 9000)}`;
             const infoPoints = (data.info || '').split('\n').filter(Boolean);
             const initialLogs: LogEntry[] = [
@@ -1366,29 +1383,19 @@ export default function App() {
               unreadBy: ['FOREMAN', 'OWNER'],
               logs: initialLogs,
               aiChat: [],
-              mileage: 0
+              mileage: data.mileage ?? 0
             };
-            if (supabase) {
-              if (!canCreateOrder(userRole)) {
-                console.warn('[capabilities] createRepairOrder: not allowed for role', userRole);
-                createROInFlightRef.current = false;
-                return;
-              }
-              createRepairOrder(newRO)
-                .then(() => refetchRosAndBays())
-                .then(() => setShowNewRODialog(false))
-                .catch((e) => console.error('createRepairOrder:', e))
-                .finally(() => { createROInFlightRef.current = false; });
-              return;
-            }
-            if (!canCreateOrder(userRole)) {
-              console.warn('[capabilities] createRepairOrder: not allowed for role', userRole);
-              createROInFlightRef.current = false;
-              return;
-            }
+
             setRos(prev => [...prev, newRO]);
             setShowNewRODialog(false);
-            createROInFlightRef.current = false;
+
+            if (supabase) {
+              createROInFlightRef.current = true;
+              createRepairOrder(newRO)
+                .then(() => refetchRosAndBays())
+                .catch((e) => console.error('createRepairOrder:', e))
+                .finally(() => { createROInFlightRef.current = false; });
+            }
           }} /> )}
 
       {showPaymentDialog && ( <PaymentDialog roId={showPaymentDialog} onClose={() => setShowPaymentDialog(null)} onSettle={(method: any, amount: any) => { 
