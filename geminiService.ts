@@ -64,7 +64,7 @@ function parseDataUrl(dataUrl: string): { mimeType: string; data: string } | nul
 
 export async function getDiagnosticAdvice(context: DiagnosticContext) {
   // Correctly initialize GoogleGenAI with named apiKey parameter
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENAI_API_KEY || process.env.API_KEY });
   
   try {
     const parts: Part[] = [];
@@ -145,7 +145,7 @@ export async function getDiagnosticAdvice(context: DiagnosticContext) {
 }
 
 export async function decodeVIN(vin: string) {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENAI_API_KEY || process.env.API_KEY });
   
   const prompt = `Decode the following Vehicle Identification Number (VIN) and provide the technical specifications: ${vin}`;
 

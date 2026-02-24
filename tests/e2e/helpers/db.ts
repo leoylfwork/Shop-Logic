@@ -2,8 +2,8 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { E2ERole } from './login';
 import { getCredentialsForRole } from './login';
 
-const url = process.env.E2E_SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-const anonKey = process.env.E2E_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+const url = process.env.E2E_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const anonKey = process.env.E2E_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export type RepairOrderRow = {
   id: string;
@@ -20,7 +20,7 @@ export type RepairOrderRow = {
 let cachedClient: SupabaseClient | null = null;
 
 function getSupabase(): SupabaseClient {
-  if (!url || !anonKey) throw new Error('E2E_SUPABASE_URL and E2E_SUPABASE_ANON_KEY (or VITE_*) must be set');
+  if (!url || !anonKey) throw new Error('E2E_SUPABASE_URL and E2E_SUPABASE_ANON_KEY (or NEXT_PUBLIC_*) must be set');
   if (!cachedClient) cachedClient = createClient(url, anonKey);
   return cachedClient;
 }

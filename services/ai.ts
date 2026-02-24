@@ -1,38 +1,28 @@
 /**
  * AI service abstraction for CK-Flow.
- * - When VITE_API_BASE_URL is set, calls Vercel Serverless (/api/ai/diagnostic, /api/ai/decode-vin).
- * - Otherwise falls back to local geminiService (prototype only).
+ * - Calls same-origin Next.js API routes (/api/ai/diagnostic, /api/ai/decode-vin).
  * API keys stay on the server; never use API keys in the frontend.
  */
 
+import type { DiagnosticContext } from '../geminiService';
 export type { DiagnosticContext } from '../geminiService';
 
-import {
-  getDiagnosticAdvice as geminiDiagnostic,
-  decodeVIN as geminiDecodeVIN,
-  type DiagnosticContext,
-} from '../geminiService';
-
-const API_BASE = typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL
-  ? (import.meta.env.VITE_API_BASE_URL as string).replace(/\/$/, '')
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL
+  ? process.env.NEXT_PUBLIC_API_BASE_URL.replace(/\/$/, '')
   : '';
+const api = (path: string) => `${API_BASE}${path}`;
 
 export async function getDiagnosticAdvice(context: DiagnosticContext): Promise<string> {
-  if (API_BASE) {
-    try {
-      const res = await fetch(`${API_BASE}/api/ai/diagnostic`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(context),
-      });
-      if (!res.ok) throw new Error(`API ${res.status}`);
-      const data = await res.json();
-      return data.text ?? data.result ?? String(data);
-    } catch (e) {
-      console.warn('AI diagnostic API failed, falling back to local:', e);
-    }
+  const res = await fetch(api('/api/ai/diagnostic'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(context),
+  });
+  if (!res.ok) {
+    throw new Error(`AI diagnostic API failed with status ${res.status}`);
   }
-  return geminiDiagnostic(context);
+  const data = await res.json();
+  return data.text ?? data.result ?? String(data);
 }
 
 export async function decodeVIN(vin: string): Promise<{
@@ -46,19 +36,14 @@ export async function decodeVIN(vin: string): Promise<{
   bodyStyle?: string;
   plant?: string;
 } | null> {
-  if (API_BASE) {
-    try {
-      const res = await fetch(`${API_BASE}/api/ai/decode-vin`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vin }),
-      });
-      if (!res.ok) throw new Error(`API ${res.status}`);
-      const data = await res.json();
-      return data.decoded ?? data ?? null;
-    } catch (e) {
-      console.warn('VIN decode API failed, falling back to local:', e);
-    }
+  const res = await fetch(api('/api/ai/decode-vin'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ vin }),
+  });
+  if (!res.ok) {
+    throw new Error(`VIN decode API failed with status ${res.status}`);
   }
-  return geminiDecodeVIN(vin);
+  const data = await res.json();
+  return data.decoded ?? data ?? null;
 }

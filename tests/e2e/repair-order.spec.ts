@@ -23,7 +23,7 @@ test.describe('creation', () => {
 
   // Requires Supabase backend; create flow refetches before closing dialog so card can take a few seconds
   test('owner can create Mechanic RO, card appears, persists after refresh and in DB', async ({ page }) => {
-    test.skip(!process.env.E2E_SUPABASE_URL && !process.env.VITE_SUPABASE_URL, 'Supabase URL required for DB checks');
+    test.skip(!process.env.E2E_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL, 'Supabase URL required for DB checks');
 
     const model = uniqueModel();
     await createOrder(page, { model, customerName, phone: '555-E2E' });
@@ -65,7 +65,7 @@ test.describe('bay assignment', () => {
 
   test('foreman can change status to IN_PROGRESS and assign bay', async ({ page }) => {
     if (!hasRoleCreds('owner')) test.skip(true, 'Bay assignment test also requires E2E_OWNER_* to create RO');
-    test.skip(!process.env.E2E_SUPABASE_URL && !process.env.VITE_SUPABASE_URL, 'Supabase URL required for DB checks');
+    test.skip(!process.env.E2E_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL, 'Supabase URL required for DB checks');
 
     const model = uniqueModel();
     await login(page, 'owner');

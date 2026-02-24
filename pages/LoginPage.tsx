@@ -12,7 +12,7 @@ export default function LoginPage() {
   if (!auth) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F5F7FA] text-slate-600">
-        <p>Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.</p>
+        <p>Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.</p>
       </div>
     );
   }
