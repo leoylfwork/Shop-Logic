@@ -280,6 +280,9 @@ export default function App() {
   const isMechanicModeUnauthorized =
     workType === 'MECHANIC' &&
     ((userRole === 'ADVISOR' && !canAccessAdvisorMode) || (userRole === 'FOREMAN' && !canAccessForemanMode));
+  const getTargetRolesForNotification = (): Role[] => {
+    return (['ADVISOR', 'FOREMAN', 'OWNER'] as Role[]).filter((r) => r !== userRole);
+  };
 
   useEffect(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -329,7 +332,14 @@ export default function App() {
       getRepairOrders([]),
       getBays(INITIAL_BAYS),
     ]);
-    setRos(freshRos);
+    setRos(prev => freshRos.map(fresh => {
+      const prevRO = prev.find(p => p.id === fresh.id);
+      return {
+        ...fresh,
+        lastReadInfo: prevRO?.lastReadInfo ?? { ADVISOR: '', FOREMAN: '', OWNER: '' },
+        unreadBy: prevRO?.unreadBy ?? [],
+      };
+    }));
     setBays(freshBays.map(b => ({ ...b, currentROId: freshRos.find(r => r.bayId === b.id)?.id })));
   };
 
@@ -497,7 +507,7 @@ export default function App() {
     };
     setRos(prev => prev.map(ro => {
       if (ro.id === roId) {
-        const targetRoles = ['ADVISOR', 'FOREMAN', 'OWNER'].filter(r => r !== userRole);
+        const targetRoles = getTargetRolesForNotification();
         const newUnreadBy = [...new Set([...ro.unreadBy, ...targetRoles])];
         return { ...ro, logs: [...ro.logs, newLog], unreadBy: newUnreadBy };
       }
@@ -522,7 +532,7 @@ export default function App() {
     };
     setRos(prev => prev.map(ro => {
       if (ro.id === roId) {
-        const targetRoles = ['ADVISOR', 'FOREMAN', 'OWNER'].filter(r => r !== userRole);
+        const targetRoles = getTargetRolesForNotification();
         const newUnreadBy = [...new Set([...ro.unreadBy, ...targetRoles])];
         return { ...ro, aiChat: [...(ro.aiChat || []), newLog], unreadBy: newUnreadBy };
       }
@@ -586,13 +596,15 @@ export default function App() {
     if (updates.isInsuranceCase !== undefined) dbUpdates.isInsuranceCase = updates.isInsuranceCase;
     if (updates.isInsuranceCase !== undefined) dbUpdates.isInsuranceCase = updates.isInsuranceCase;
 
+    const targetRoles = getTargetRolesForNotification();
     const applyState = () => {
       setRos(prev => prev.map(item => {
         if (item.id === id) {
           if (updates.id && updates.id !== id) {
             if (selectedROId === id) setSelectedROId(updates.id);
           }
-          return { ...item, ...updates };
+          const newUnreadBy = [...new Set([...item.unreadBy, ...targetRoles])];
+          return { ...item, ...updates, unreadBy: newUnreadBy };
         }
         return item;
       }));
@@ -1081,7 +1093,10 @@ export default function App() {
                           </div>
                           <div className="space-y-1 mb-auto">
                              {ro.info.split('\n').filter(Boolean).slice(0, 2).map((p, i) => (
-                               <p key={i} className="text-[12px] text-slate-500 font-normal leading-relaxed">• {p}</p>
+                               <div key={i} className="flex items-center gap-2 text-[12px] text-slate-500 font-normal leading-relaxed">
+                                 <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-slate-400" aria-hidden />
+                                 <span>{p}</span>
+                               </div>
                              ))}
                           </div>
                           <div className="flex items-center gap-1.5 text-blue-600 mt-3 pt-3 border-t border-slate-100">
@@ -1380,7 +1395,7 @@ export default function App() {
               order: ros.length,
               lastReadInfo: { ADVISOR: data.info || '', FOREMAN: '', OWNER: '' },
               totalTimeInBay: 0,
-              unreadBy: ['FOREMAN', 'OWNER'],
+              unreadBy: getTargetRolesForNotification(),
               logs: initialLogs,
               aiChat: [],
               mileage: data.mileage ?? 0
@@ -1452,7 +1467,7 @@ function KanbanCard({ ro, userRole, onClick, inInsuranceSection, userWorkType }:
       onClick={onClick} 
       className={`relative md:aspect-square w-full flex flex-col p-4 cursor-pointer transition-all duration-200 group border bg-white border-[#E5E7EB] hover:border-slate-400 shadow-sm min-h-[90px] md:min-h-[100px] ${ro.calendarEventId ? 'border-purple-200 bg-purple-50/10' : ''}`}
     >
-      {isUnread && ( <div className="absolute top-3 right-3 w-2 h-2 bg-blue-600 rounded-full" /> )}
+      {isUnread && ( <div className="absolute top-3 right-3 w-2 h-2 bg-red-600 rounded-full" /> )}
       
       {/* Top status line behavior */}
       <div className={`absolute top-0 left-0 right-0 h-1 ${ro.urgent && userWorkType === 'MECHANIC' ? 'bg-red-600' : getStatusBorderColor(ro.status)}`} />
@@ -1475,8 +1490,8 @@ function KanbanCard({ ro, userRole, onClick, inInsuranceSection, userWorkType }:
         {currentLines.map((p, i) => {
           const isLineUnread = !lastReadLines.includes(p);
           return (
-            <div key={i} className={`flex gap-2 p-1 rounded transition-colors ${isLineUnread ? 'bg-amber-50 border border-amber-100' : ''}`}>
-              <div className={`w-1 h-1 rounded-full shrink-0 mt-2 ${isLineUnread ? 'bg-amber-600' : 'bg-slate-900'}`} />
+            <div key={i} className={`flex items-center gap-2 p-1 rounded transition-colors ${isLineUnread ? 'bg-amber-50 border border-amber-100' : ''}`}>
+              <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${isLineUnread ? 'bg-amber-600' : 'bg-slate-900'}`} />
               <p className={`text-[10px] md:text-[11px] font-bold leading-tight ${isLineUnread ? 'text-amber-900' : 'text-slate-900'}`}>{p}</p>
             </div>
           );
@@ -2590,9 +2605,9 @@ const BulletPointInput = forwardRef(({ value, lastReadValue, onChange, defaultEd
                   />
                 </div>
               ) : (
-                <div className={`flex-1 flex items-start gap-3 bg-white border p-4 rounded text-[11px] font-black text-slate-700 leading-relaxed transition-all shadow-sm ${isLineUnread ? 'border-amber-300 bg-amber-50 shadow-inner' : 'border-slate-100 opacity-80'}`}>
-                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 ${isLineUnread ? 'bg-amber-600 shadow-sm' : 'bg-slate-900'}`} />
-                  {item}
+                <div className={`flex-1 flex items-center gap-3 bg-white border p-4 rounded text-[11px] font-black text-slate-700 leading-relaxed transition-all shadow-sm ${isLineUnread ? 'border-amber-300 bg-amber-50 shadow-inner' : 'border-slate-100 opacity-80'}`}>
+                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${isLineUnread ? 'bg-amber-600 shadow-sm' : 'bg-slate-900'}`} />
+                  <span>{item}</span>
                 </div>
               )}
               {isEditing && (
@@ -3235,7 +3250,7 @@ function OrderHistoryView({ workType, ros, onRestore, onView }: any) {
                   </div>
                   <div className="flex items-center gap-2 md:gap-3 mt-1"><p className="text-[8px] md:text-[9px] font-black text-slate-400 uppercase tracking-widest">{ro.id}</p><div className="w-1 h-1 rounded-full bg-slate-200" /><p className="text-[8px] md:text-[9px] font-black text-blue-700 uppercase tracking-widest">{ro.customerName}</p></div>
                 </div>
-                <div className="flex-1 min-w-0 hidden md:block"><div className="flex flex-col gap-1 overflow-hidden opacity-60">{ro.info.split('\n').filter(Boolean).slice(0, 2).map((line: string, idx: number) => (<p key={idx} className="text-[9px] font-bold text-slate-500 truncate uppercase tracking-wide">• {line}</p>))}</div></div>
+                <div className="flex-1 min-w-0 hidden md:block"><div className="flex flex-col gap-1 overflow-hidden opacity-60">{ro.info.split('\n').filter(Boolean).slice(0, 2).map((line: string, idx: number) => (<div key={idx} className="flex items-center gap-2 text-[9px] font-bold text-slate-500 truncate uppercase tracking-wide"><span className="w-1 h-1 rounded-full shrink-0 bg-slate-400" aria-hidden /><span className="min-w-0 truncate">{line}</span></div>))}</div></div>
                 <div className="flex-1 text-right shrink-0"><p className={`text-sm md:text-lg font-black font-mono tracking-tighter ${ro.paymentMethod === 'ABANDONED' ? 'text-red-400 opacity-60' : 'text-emerald-700'}`}>{ro.paymentMethod === 'ABANDONED' ? 'VOID' : `$${ro.paymentAmount?.toFixed(2)}`}</p><p className="text-[7px] md:text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mt-0.5">{ro.paymentMethod}</p></div>
                 {ro.paymentMethod === 'ABANDONED' && (<button onClick={(e) => { e.stopPropagation(); onRestore(ro.id); }} className="p-2 md:p-3 bg-slate-50 text-blue-600 rounded border border-slate-200 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm"><RotateCcw className="w-3.5 h-3.5 md:w-4 md:h-4" /></button>)}
             </div>
