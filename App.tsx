@@ -273,7 +273,8 @@ export default function App() {
   const [broadcastMessage, setBroadcastMessage] = useState<string | null>(null);
   const [showBroadcastInput, setShowBroadcastInput] = useState(false);
   const [showSentToast, setShowSentToast] = useState(false);
-  const socketRef = useRef<WebSocket | null>(null);
+  const [showBroadcastError, setShowBroadcastError] = useState(false);
+  const broadcastChannelRef = useRef<ReturnType<NonNullable<typeof supabase>['channel']> | null>(null);
 
   const canAccessAdvisorMode = currentUserRole === 'advisor' || currentUserRole === 'owner';
   const canAccessForemanMode = currentUserRole === 'foreman' || currentUserRole === 'owner';
@@ -284,23 +285,24 @@ export default function App() {
     return (['ADVISOR', 'FOREMAN', 'OWNER'] as Role[]).filter((r) => r !== userRole);
   };
 
+  /** Supabase Realtime broadcast: all clients receive Advisor messages. */
   useEffect(() => {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const socket = new WebSocket(`${protocol}//${window.location.host}`);
-    socketRef.current = socket;
-
-    socket.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.type === 'BROADCAST') {
-          setBroadcastMessage(data.payload);
-        }
-      } catch (e) {
-        console.error('Failed to parse WS message:', e);
-      }
+    const client = supabase;
+    if (!client) return;
+    const channel = client
+      .channel('ck-flow-broadcast')
+      .on('broadcast', { event: 'advisor_broadcast' }, ({ payload }: { payload?: { text?: string } }) => {
+        setBroadcastMessage(payload?.text ?? null);
+      })
+      .on('broadcast', { event: 'clear_broadcast' }, () => {
+        setBroadcastMessage(null);
+      })
+      .subscribe();
+    broadcastChannelRef.current = channel;
+    return () => {
+      client.removeChannel(channel);
+      broadcastChannelRef.current = null;
     };
-
-    return () => socket.close();
   }, []);
 
   const sendBroadcast = (text: string) => {
@@ -308,17 +310,27 @@ export default function App() {
       console.warn('[capabilities] sendBroadcast: not allowed for role', userRole);
       return;
     }
-    if (socketRef.current?.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({ type: 'BROADCAST', payload: text }));
-      setShowSentToast(true);
-      setTimeout(() => setShowSentToast(false), 3000);
+    const channel = broadcastChannelRef.current;
+    if (!supabase || !channel) {
+      setShowBroadcastError(true);
+      setTimeout(() => setShowBroadcastError(false), 3000);
+      return;
     }
+    channel.send({
+      type: 'broadcast',
+      event: 'advisor_broadcast',
+      payload: { text },
+    });
+    setShowSentToast(true);
+    setTimeout(() => setShowSentToast(false), 3000);
   };
 
   const clearBroadcast = () => {
-    if (socketRef.current?.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({ type: 'CLEAR_BROADCAST' }));
+    const channel = broadcastChannelRef.current;
+    if (supabase && channel) {
+      channel.send({ type: 'broadcast', event: 'clear_broadcast', payload: {} });
     }
+    setBroadcastMessage(null);
   };
   const [isScanning, setIsScanning] = useState(false);
   const [draggedSection, setDraggedSection] = useState<ROStatus | null>(null);
@@ -955,7 +967,7 @@ export default function App() {
 
         {/* CENTER SECTION: NAVIGATION GROUP */}
         <nav className="flex-1 flex items-center justify-center gap-0.5 md:gap-1">
-          {workType === 'BODY' && (
+          {(workType === 'BODY' || workType === 'MECHANIC') && (
             <button onClick={() => setView('ALL')} className={`flex items-center gap-2 px-3 md:px-6 py-2 rounded-lg transition-all text-xs font-black uppercase tracking-widest ${view === 'ALL' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-400 hover:text-slate-600'}`}>
               <LayoutGrid size={14} /> <span className="hidden sm:inline">All</span>
             </button>
@@ -1228,7 +1240,7 @@ export default function App() {
               <button 
                 onClick={() => setShowBroadcastInput(true)} 
                 className="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-[50] btn-tactile flex items-center justify-center bg-blue-600 text-white rounded-full font-black shadow-xl border-b-4 border-blue-800 active:border-b-0 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95 w-14 h-14 md:w-16 md:h-16"
-                title="Send Broadcast to Foreman"
+                title="Send message to the team"
               >
                 <Megaphone size={24} strokeWidth={3} />
               </button>
@@ -1241,12 +1253,19 @@ export default function App() {
               </div>
             )}
 
-            {broadcastMessage && userRole === 'FOREMAN' && (
+            {broadcastMessage && (
               <div 
                 onClick={clearBroadcast}
                 className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] bg-blue-600 text-white px-10 py-6 rounded-none shadow-2xl border-b-4 border-blue-800 animate-in slide-in-from-top-10 duration-300 cursor-pointer hover:scale-105 transition-all text-center min-w-[300px] max-w-[90vw]"
               >
                 <p className="text-base font-black tracking-tight leading-tight">{broadcastMessage}</p>
+              </div>
+            )}
+
+            {showBroadcastError && (
+              <div className="fixed bottom-24 left-6 md:bottom-32 md:left-10 z-[100] bg-red-600 text-white px-6 py-3 rounded-lg shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 flex items-center gap-3">
+                <AlertTriangle size={18} />
+                <span className="text-[10px] font-black uppercase tracking-widest">无法发送：请确认已连接 Supabase</span>
               </div>
             )}
 
@@ -3082,55 +3101,19 @@ function AllRepairOrdersView({
       
       <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
         <div className="max-w-[1800px] mx-auto">
-          {workType === 'BODY' ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-4">
-              {currentSectionOrder.flatMap(status => grouped[status] || []).map(ro => (
-                <KanbanCard 
-                  key={ro.id} 
-                  ro={ro} 
-                  userRole={userRole} 
-                  userWorkType={workType} 
-                  onClick={() => onSelectRO(ro.id)} 
-                  inInsuranceSection={ro.status === ROStatus.BODY_WORK}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col gap-10">
-              {currentSectionOrder.map(status => {
-                const items = grouped[status] || [];
-                if (items.length === 0 && search) return null; // Hide empty rows when searching
-                
-                return (
-                  <section key={status} className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4 px-2">
-                      <h3 className={`text-xs font-black uppercase tracking-[0.2em] ${getHeaderColor(status)}`}>{labels[status]}</h3>
-                      <div className="h-px flex-1 bg-slate-200" />
-                      <span className="text-[10px] font-black text-slate-400 uppercase">{items.length} Units</span>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-4">
-                      {items.map(ro => (
-                        <KanbanCard 
-                          key={ro.id} 
-                          ro={ro} 
-                          userRole={userRole} 
-                          userWorkType={workType} 
-                          onClick={() => onSelectRO(ro.id)} 
-                          inInsuranceSection={status === ROStatus.BODY_WORK}
-                        />
-                      ))}
-                      {items.length === 0 && (
-                        <div className="col-span-full py-8 border-2 border-dashed border-slate-100 rounded-xl flex items-center justify-center">
-                          <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">No units in this status</p>
-                        </div>
-                      )}
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
-          )}
+          {/* Single grid for both Body Shop and Mechanic Shop: no section headers or dividers, just cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-4">
+            {currentSectionOrder.flatMap(status => grouped[status] || []).map(ro => (
+              <KanbanCard 
+                key={ro.id} 
+                ro={ro} 
+                userRole={userRole} 
+                userWorkType={workType} 
+                onClick={() => onSelectRO(ro.id)} 
+                inInsuranceSection={ro.status === ROStatus.BODY_WORK}
+              />
+            ))}
+          </div>
           
           {filtered.length === 0 && (
             <div className="flex flex-col items-center justify-center py-20 text-slate-300">

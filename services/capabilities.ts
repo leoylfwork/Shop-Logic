@@ -40,9 +40,8 @@ export function canChangePayment(role: Role): boolean {
   return false;
 }
 
+/** Only Advisor can send broadcast (megaphone) messages; others only see them. */
 export function canBroadcast(role: Role): boolean {
-  if (role === 'OWNER') return true;
   if (role === 'ADVISOR') return true;
-  if (role === 'FOREMAN') return false;
   return false;
 }
